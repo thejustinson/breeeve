@@ -209,7 +209,7 @@ export default function LandingPage() {
                         </svg>
                       </button>
                       {openFaq === index && (
-                        <div className="px-6 pb-4 text-left text-foreground/80 whitespace-pre-line" 
+                        <div className="px-6 py-4 text-left text-foreground/80 whitespace-pre-line" 
                              dangerouslySetInnerHTML={{ __html: faq.answer }} 
                         />
                       )}
