@@ -9,7 +9,7 @@ import { useState } from 'react';
 const faqs = [
   {
     question: "What is Breeeve?",
-    answer: "Breeeve is a fast and simple way to receive crypto payments. Whether you&apos;re a business owner, freelancer, or content creator, Breeeve lets you accept USDC payments instantly without the hassle of traditional banking."
+    answer: "Breeeve is a fast and simple way to receive crypto payments. Whether you're a business owner, freelancer, or content creator, Breeeve lets you accept USDC payments instantly without the hassle of traditional banking."
   },
   {
     question: "Why should I join the waitlist?",
@@ -205,9 +205,9 @@ export default function LandingPage() {
                         </svg>
                       </button>
                       {openFaq === index && (
-                        <div className="px-6 pb-4 text-foreground/80 whitespace-pre-line">
-                          {faq.answer.replace(/'/g, "&apos;")}
-                        </div>
+                        <div className="px-6 pb-4 text-left text-foreground/80 whitespace-pre-line" 
+                             dangerouslySetInnerHTML={{ __html: faq.answer }} 
+                        />
                       )}
                     </motion.div>
                   ))}
