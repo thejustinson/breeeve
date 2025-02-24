@@ -37,15 +37,4 @@ export default function Navbar() {
       </div>
     </motion.nav>
   );
-}
-
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link 
-      href={href}
-      className="text-foreground hover:text-white transition-colors"
-    >
-      {children}
-    </Link>
-  );
 } 

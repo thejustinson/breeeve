@@ -188,7 +188,7 @@ export default function SignIn() {
       {/* Footer */}
       <div className="mt-8 text-center">
         <p className="text-sm text-foreground">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/auth/signup" className="text-accent-text hover:text-white font-medium transition-colors">
             Sign up
           </Link>

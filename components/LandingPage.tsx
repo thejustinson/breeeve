@@ -56,16 +56,12 @@ export default function LandingPage() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-
+    
     try {
-      const response = await joinWaitlist(email);
-      
-      if (response.success) {
-        setIsSubmitted(true);
-      } else {
-        setError(response.message);
-      }
-    } catch (err) {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setIsSubmitted(true);
+    } catch {
       setError('Something went wrong. Please try again later.');
     } finally {
       setIsLoading(false);
@@ -209,8 +205,8 @@ export default function LandingPage() {
                         </svg>
                       </button>
                       {openFaq === index && (
-                        <div className="px-6 py-5 text-left text-foreground/80 whitespace-pre-line border-t border-white/10">
-                          {faq.answer}
+                        <div className="px-6 pb-4 text-foreground/80 whitespace-pre-line">
+                          {faq.answer.replace(/'/g, "&apos;")}
                         </div>
                       )}
                     </motion.div>
