@@ -10,8 +10,13 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Breeeve - Instant Crypto Payments",
-  description: "Get paid instantly with crypto payment links",
+  title: "Breeeve - Accept Crypto Payments",
+  description: "A fast and simple way to receive USDC payments for your business",
+  icons: {
+    icon: '/logo.svg',
+    shortcut: '/logo.svg',
+    apple: '/logo.svg',
+  },
 };
 
 export default function RootLayout({
