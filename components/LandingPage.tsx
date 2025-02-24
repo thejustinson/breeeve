@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 // import Image from 'next/image';
 // import Link from 'next/link';
 import { useState } from 'react';
-import { joinWaitlist } from '@/app/actions/waitlist';
+// import { joinWaitlist } from '@/app/actions/waitlist';
 
 const faqs = [
   {
     question: "What is Breeeve?",
-    answer: "Breeeve is a fast and simple way to receive crypto payments in Nigeria. Whether you're a business owner, freelancer, or content creator, Breeeve lets you accept USDC payments instantly without the hassle of traditional banking."
+    answer: "Breeeve is a fast and simple way to receive crypto payments. Whether you&apos;re a business owner, freelancer, or content creator, Breeeve lets you accept USDC payments instantly without the hassle of traditional banking."
   },
   {
     question: "Why should I join the waitlist?",

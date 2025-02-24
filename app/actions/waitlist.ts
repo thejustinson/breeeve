@@ -12,13 +12,6 @@ type WaitlistResponse = {
 // Email validation schema
 const emailSchema = z.string().email('Please enter a valid email address');
 
-// Database types
-type WaitlistEntry = {
-  id: number;
-  email: string;
-  created_at: string;
-};
-
 // Initialize Supabase client
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -59,7 +52,7 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
 
     return {
       success: true,
-      message: "You're on the list! We'll notify you when we launch."
+      message: "You&apos;re on the list! We&apos;ll notify you when we launch."
     };
 
   } catch (error) {
