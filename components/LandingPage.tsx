@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 // import Image from 'next/image';
 // import Link from 'next/link';
 import { useState } from 'react';
-// import { joinWaitlist } from '@/app/actions/waitlist';
+import { joinWaitlist } from '@/app/actions/waitlist';
 
 const faqs = [
   {
@@ -56,11 +56,15 @@ export default function LandingPage() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-    
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setIsSubmitted(true);
+      const response = await joinWaitlist(email);
+      
+      if (response.success) {
+        setIsSubmitted(true);
+      } else {
+        setError(response.message);
+      }
     } catch {
       setError('Something went wrong. Please try again later.');
     } finally {
@@ -164,9 +168,9 @@ export default function LandingPage() {
                   className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm max-w-md mx-auto"
                 >
                   <div className="text-5xl mb-4">🎉</div>
-                  <h3 className="text-xl font-bold text-white mb-2">You're on the list!</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">You&apos;re on the waitlist!</h3>
                   <p className="text-foreground/80">
-                    We'll notify you when Breeeve launches. Stay tuned for updates!
+                    We&apos;ll notify you when Breeeve launches. Stay tuned for updates!
                   </p>
                 </motion.div>
               )}

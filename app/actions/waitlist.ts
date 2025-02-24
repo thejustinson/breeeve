@@ -12,11 +12,15 @@ type WaitlistResponse = {
 // Email validation schema
 const emailSchema = z.string().email('Please enter a valid email address');
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Initialize Supabase client with runtime config
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing Supabase environment variables');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
   try {
@@ -24,11 +28,15 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
     const validatedEmail = emailSchema.parse(email);
 
     // Check if email already exists
-    const { data: existingEntry } = await supabase
+    const { data: existingEntry, error: checkError } = await supabase
       .from('waitlist')
       .select('email')
       .eq('email', validatedEmail)
       .single();
+
+    if (checkError && checkError.code !== 'PGRST116') {
+      throw checkError;
+    }
 
     if (existingEntry) {
       return {
@@ -38,24 +46,28 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
     }
 
     // Insert new entry
-    const { error } = await supabase
+    const { error: insertError } = await supabase
       .from('waitlist')
       .insert([
         {
           email: validatedEmail,
           created_at: new Date().toISOString()
         }
-      ])
-      .select();
+      ]);
 
-    if (error) throw error;
+    if (insertError) {
+      console.error('Insert Error:', insertError);
+      throw insertError;
+    }
 
     return {
       success: true,
-      message: "You&apos;re on the list! We&apos;ll notify you when we launch."
+      message: "You're on the list! We'll notify you when we launch."
     };
 
   } catch (error) {
+    console.error('Waitlist Error:', error);
+
     if (error instanceof z.ZodError) {
       return {
         success: false,
@@ -63,7 +75,6 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
       };
     }
 
-    console.error('Waitlist Error:', error);
     return {
       success: false,
       message: 'Something went wrong. Please try again later.'
