@@ -164,9 +164,9 @@ export default function LandingPage() {
                   className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm max-w-md mx-auto"
                 >
                   <div className="text-5xl mb-4">🎉</div>
-                  <h3 className="text-xl font-bold text-white mb-2">You're on the list!</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">You&apos;re on the waitlist!</h3>
                   <p className="text-foreground/80">
-                    We'll notify you when Breeeve launches. Stay tuned for updates!
+                    We&apos;ll notify you when Breeeve launches. Stay tuned for updates!
                   </p>
                 </motion.div>
               )}
