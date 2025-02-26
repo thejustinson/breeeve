@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Breeeve",
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: "Breeeve - Accept Crypto Payments",
