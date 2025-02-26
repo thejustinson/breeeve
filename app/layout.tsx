@@ -17,6 +17,21 @@ export const metadata: Metadata = {
     shortcut: '/logo.svg',
     apple: '/logo.svg',
   },
+  openGraph: {
+    title: "Breeeve - Accept Crypto Payments",
+    description: "A fast and simple way to receive USDC payments for your business",
+    url: "https://breeeve.vercel.app",
+    siteName: "Breeeve",
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: "Breeeve - Accept Crypto Payments",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
