@@ -1,31 +1,75 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
+import { signIn } from 'next-auth/react';
+import { createClient } from '@supabase/supabase-js';
+import { comparePassword } from '@/lib/utils/crypto';
+
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  throw new Error('Missing Supabase environment variables');
+}
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    }
+  }
+);
 
 export async function POST(request: Request) {
   try {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      throw new Error('Missing Supabase environment variables')
+    const { email, password } = await request.json();
+
+    // Get user from Supabase
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single();
+
+    if (error || !user.password_hash) {
+      return NextResponse.json(
+        { error: 'Invalid credentials' },
+        { status: 401 }
+      );
     }
 
-    const supabase = createRouteHandlerClient({ cookies })
-    const { email, password } = await request.json()
+    // Verify password using argon2
+    const validPassword = await comparePassword(password, user.password_hash);
+    if (!validPassword) {
+      return NextResponse.json(
+        { error: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    // Sign in with NextAuth
+    const result = await signIn('credentials', {
       email,
       password,
-    })
+      redirect: false,
+    });
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 })
+    if (result?.error) {
+      throw new Error(result.error);
     }
 
-    return NextResponse.json({ user: data.user })
+    return NextResponse.json({
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        walletAddress: user.wallet_address
+      }
+    });
+
   } catch (error) {
-    console.error('Login error:', error)
+    console.error('Login error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
-    )
+    );
   }
 } 
