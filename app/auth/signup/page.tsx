@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 export default function SignUp() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,16 +16,34 @@ export default function SignUp() {
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading('email');
-    // Add your email sign up logic here
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsLoading(null);
+    
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Signup failed');
+      }
+
+      router.push('/dashboard');
+    } catch (error) {
+      console.error('Signup error:', error);
+    } finally {
+      setIsLoading(null);
+    }
   };
 
   const handleGoogleSignUp = async () => {
     setIsLoading('google');
-    // Add your Google sign up logic here
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsLoading(null);
+    try {
+      await signIn('google', { callbackUrl: '/dashboard' });
+    } catch (error) {
+      console.error('Google signup error:', error);
+      setIsLoading(null);
+    }
   };
 
   return (

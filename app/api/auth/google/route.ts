@@ -3,37 +3,35 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { Keypair } from '@solana/web3.js'
 import { encryptWallet } from '@/lib/utils/crypto'
+import { OAuth2Client } from 'google-auth-library'
 
-export async function GET(request: Request) {
+const client = new OAuth2Client(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback/google`
+)
+
+export async function GET() {
   try {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      throw new Error('Missing Supabase environment variables')
-    }
+    const url = client.generateAuthUrl({
+      access_type: 'offline',
+      scope: ['email', 'profile'],
+      prompt: 'consent'
+    })
 
-    const requestUrl = new URL(request.url)
-    const code = requestUrl.searchParams.get('code')
-
-    if (code) {
-      const supabase = createRouteHandlerClient({ cookies })
-      const { data, error } = await supabase.auth.exchangeCodeForSession(code)
-      
-      if (error) {
-        console.error('Auth error:', error)
-        return NextResponse.redirect(`${requestUrl.origin}/auth/error`)
-      }
-
-      return NextResponse.redirect(`${requestUrl.origin}/dashboard`)
-    }
-
-    return NextResponse.redirect(`${requestUrl.origin}/auth/error`)
+    return NextResponse.json({ url })
   } catch (error) {
     console.error('Google auth error:', error)
-    return NextResponse.redirect(`${requestUrl.origin}/auth/error`)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
   }
 }
 
 export async function POST(request: Request) {
   try {
+    const supabase = createRouteHandlerClient({ cookies })
     const { code } = await request.json();
 
     // Exchange code for session

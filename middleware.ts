@@ -1,23 +1,10 @@
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { withAuth } from 'next-auth/middleware';
 
-export async function middleware(req: NextRequest) {
-  const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req, res });
-
-  // Check auth session
-  const { data: { session }, error } = await supabase.auth.getSession();
-
-  // Protect routes under /dashboard
-  if (req.nextUrl.pathname.startsWith('/dashboard')) {
-    if (!session) {
-      return NextResponse.redirect(new URL('/login', req.url));
-    }
-  }
-
-  return res;
-}
+export default withAuth({
+  callbacks: {
+    authorized: ({ token }) => !!token
+  },
+});
 
 export const config = {
   matcher: [
