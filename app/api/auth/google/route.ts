@@ -1,12 +1,36 @@
-import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-import { Keypair } from '@solana/web3.js';
-import { encryptWallet } from '@/lib/utils/crypto';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
+import { Keypair } from '@solana/web3.js'
+import { encryptWallet } from '@/lib/utils/crypto'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY!
-);
+export async function GET(request: Request) {
+  try {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      throw new Error('Missing Supabase environment variables')
+    }
+
+    const requestUrl = new URL(request.url)
+    const code = requestUrl.searchParams.get('code')
+
+    if (code) {
+      const supabase = createRouteHandlerClient({ cookies })
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+      
+      if (error) {
+        console.error('Auth error:', error)
+        return NextResponse.redirect(`${requestUrl.origin}/auth/error`)
+      }
+
+      return NextResponse.redirect(`${requestUrl.origin}/dashboard`)
+    }
+
+    return NextResponse.redirect(`${requestUrl.origin}/auth/error`)
+  } catch (error) {
+    console.error('Google auth error:', error)
+    return NextResponse.redirect(`${requestUrl.origin}/auth/error`)
+  }
+}
 
 export async function POST(request: Request) {
   try {
