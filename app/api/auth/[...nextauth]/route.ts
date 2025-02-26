@@ -2,8 +2,21 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { createClient } from "@supabase/supabase-js"
 
+// Add this before the check
+console.log('Environment check:', {
+  hasClientId: !!process.env.GOOGLE_CLIENT_ID,
+  hasClientSecret: !!process.env.GOOGLE_CLIENT_SECRET,
+  clientIdLength: process.env.GOOGLE_CLIENT_ID?.length,
+  secretLength: process.env.GOOGLE_CLIENT_SECRET?.length
+});
+
+// Add more detailed error message
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-  throw new Error('Missing Google OAuth credentials');
+  console.error('Missing environment variables:', {
+    clientId: !!process.env.GOOGLE_CLIENT_ID,
+    clientSecret: !!process.env.GOOGLE_CLIENT_SECRET
+  });
+  throw new Error('Missing Google OAuth credentials - check GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET');
 }
 
 // Create Supabase client with proper error handling
