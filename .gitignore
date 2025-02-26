@@ -44,3 +44,6 @@ next-env.d.ts
 # Environment variables
 .env
 .env*.local
+
+/app/checkout/
+/app/dashboard/
