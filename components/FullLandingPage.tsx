@@ -6,12 +6,12 @@ import Link from 'next/link';
 
 export default function LandingPage() {
   return (
-    <main className="bg-background text-foreground font-lato">
+    <main className="bg-white text-purple-deep font-sans">
       {/* Hero Section */}
-      <section className="min-h-[90vh] md:min-h-screen py-32 md:py-40 flex items-center gradient-bg relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-1/2 -right-1/2 w-[1000px] h-[1000px] rounded-full bg-accent/20 blur-3xl animate-pulse" />
-          <div className="absolute -bottom-1/2 -left-1/2 w-[1000px] h-[1000px] rounded-full bg-gradient-start/20 blur-3xl animate-pulse" />
+      <section className="min-h-[90vh] md:min-h-screen py-32 md:py-40 flex items-center relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden bg-grid-pattern opacity-10">
+          <div className="absolute -top-1/2 -right-1/2 w-[1000px] h-[1000px] rounded-full bg-gradient-to-br from-purple-deep to-purple-light opacity-20 blur-3xl animate-pulse" />
+          <div className="absolute -bottom-1/2 -left-1/2 w-[1000px] h-[1000px] rounded-full bg-gradient-to-tr from-purple-deep to-purple-light opacity-20 blur-3xl animate-pulse" />
         </div>
         <div className="container relative px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -22,25 +22,25 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="inline-block px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-accent/10 border border-accent-text/20 hover:bg-accent/20 transition-colors"
+                className="inline-block px-4 py-2 sm:px-6 sm:py-3 rounded-3xl bg-purple-deep/10 border border-purple-deep/20 hover:bg-purple-deep/20 transition-colors"
               >
-                <span className="text-accent-text font-medium text-sm sm:text-base">✨ Launch Offer: First month free</span>
+                <span className="text-purple-deep font-medium text-sm sm:text-base">✨ Launch Offer: First month free</span>
               </motion.div>
               
               <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight text-purple-deep">
                   Get Paid in a{' '}
                   <span className="relative inline-block">
-                    <span className="text-accent-text">Breeeve</span>
+                    <span className="bg-gradient-to-r from-purple-deep to-purple-light bg-clip-text text-transparent">Breeeve</span>
                     <motion.span
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ delay: 0.5, duration: 0.8 }}
-                      className="absolute bottom-0 left-0 w-full h-1 bg-accent-text/30"
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-deep to-purple-light opacity-30"
                     />
                   </span>
                 </h1>
-                <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                <p className="text-lg sm:text-xl text-purple-deep leading-relaxed max-w-2xl mx-auto lg:mx-0">
                   Create payment links in seconds, get paid instantly in crypto.
                   <br className="hidden md:block" />
                   No complicated setup, no hassle.
@@ -52,7 +52,7 @@ export default function LandingPage() {
                   <motion.button 
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full sm:w-auto px-6 sm:px-8 py-4 bg-accent text-accent-text rounded-xl text-lg font-bold shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all duration-300"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-4 bg-purple-deep text-purple-light rounded-xl text-lg font-bold shadow-lg shadow-purple-deep/25 hover:shadow-purple-deep/40 transition-all duration-300"
                   >
                     Start Now
                   </motion.button>
@@ -60,7 +60,7 @@ export default function LandingPage() {
                 <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto group px-6 sm:px-8 py-4 border border-accent-text/20 text-white rounded-xl text-lg font-bold hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto group px-6 sm:px-8 py-4 border border-purple-deep/20 text-purple-deep rounded-xl text-lg font-bold hover:bg-purple-deep/10 transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <span>Watch Demo</span>
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,25 +74,25 @@ export default function LandingPage() {
                 <div className="flex items-center gap-4">
                   <div className="flex -space-x-3">
                     {[...Array(4)].map((_, i) => (
-                      <div key={i} className="w-8 sm:w-10 h-8 sm:h-10 rounded-full border-2 border-background bg-gradient-to-r from-accent-text to-accent" />
+                      <div key={i} className="w-8 sm:w-10 h-8 sm:h-10 rounded-full border-2 border-purple-deep bg-gradient-to-r from-purple-deep to-purple-light" />
                     ))}
                   </div>
                   <p className="text-sm">
-                    <span className="text-white font-bold">1,000+</span>
+                    <span className="text-purple-deep font-bold">1,000+</span>
                     <br />active users
                   </p>
                 </div>
-                <div className="hidden sm:block h-8 w-px bg-white/10" />
+                <div className="hidden sm:block h-8 w-px bg-purple-deep/10" />
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-purple-light" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
                   <p className="text-sm">
-                    <span className="text-white font-bold">4.9/5</span>
+                    <span className="text-purple-deep font-bold">4.9/5</span>
                     <br />user rating
                   </p>
                 </div>
@@ -106,7 +106,7 @@ export default function LandingPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative h-[300px] sm:h-[400px] lg:h-[600px]"
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-deep to-transparent z-10" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-full h-full max-w-[500px] rounded-2xl overflow-hidden">
                   <Image
@@ -116,10 +116,10 @@ export default function LandingPage() {
                     className="object-contain drop-shadow-2xl w-full h-full rounded-2xl"
                     priority
                   />
-                  <div className="absolute -right-4 sm:-right-20 top-20 bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 shadow-xl">
+                  <div className="absolute -right-4 sm:-right-20 top-20 bg-purple-deep/5 backdrop-blur-xl rounded-2xl p-4 border border-purple-deep/10 shadow-xl">
                     <div className="flex items-center gap-3">
-                      <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-                      <p className="text-sm text-white">Payment Received</p>
+                      <div className="w-3 h-3 rounded-full bg-purple-light animate-pulse" />
+                      <p className="text-sm text-purple-light">Payment Received</p>
                     </div>
                   </div>
                 </div>
@@ -131,7 +131,7 @@ export default function LandingPage() {
 
       {/* How It Works Section */}
       <section className="py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-deep/5 to-transparent" />
         <div className="container relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -140,8 +140,8 @@ export default function LandingPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">How It Works</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-purple-deep mb-6">How It Works</h2>
+            <p className="text-lg text-purple-deep leading-relaxed max-w-2xl mx-auto">
               Get started with Breeeve in three simple steps. No coding required.
             </p>
           </motion.div>
@@ -182,16 +182,16 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="relative p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors group"
+                className="relative p-8 rounded-2xl bg-purple-deep/5 border border-purple-deep/10 backdrop-blur-sm hover:bg-purple-deep/10 transition-colors group"
               >
-                <div className="absolute -top-4 left-8 w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-accent-text shadow-lg shadow-accent/25">
+                <div className="absolute -top-4 left-8 w-12 h-12 bg-purple-light rounded-xl flex items-center justify-center text-purple-deep shadow-lg shadow-purple-deep/25">
                   {step.icon}
                 </div>
                 <div className="mt-8">
-                  <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
-                  <p className="text-foreground/80">{step.description}</p>
+                  <h3 className="text-xl font-bold text-purple-light mb-4">{step.title}</h3>
+                  <p className="text-purple-deep leading-relaxed">{step.description}</p>
                 </div>
-                <div className="absolute bottom-0 left-0 h-1 bg-accent-text/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 w-full" />
+                <div className="absolute bottom-0 left-0 h-1 bg-purple-deep/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 w-full" />
               </motion.div>
             ))}
           </div>
@@ -200,7 +200,7 @@ export default function LandingPage() {
 
       {/* Why Use Breeeve Section */}
       <section className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-accent/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-purple-deep/5 to-transparent" />
         <div className="container relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,8 +209,8 @@ export default function LandingPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Why Use Breeeve?</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-purple-deep mb-6">Why Use Breeeve?</h2>
+            <p className="text-lg text-purple-deep leading-relaxed max-w-2xl mx-auto">
               Experience the future of payments with our cutting-edge features.
             </p>
           </motion.div>
@@ -254,12 +254,12 @@ export default function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:-translate-y-1"
+                className="group relative p-8 rounded-2xl bg-purple-deep/5 border border-purple-deep/10 backdrop-blur-sm hover:bg-purple-deep/10 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                <p className="text-foreground/80">{feature.description}</p>
-                <div className="absolute inset-0 rounded-2xl bg-accent-text/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <h3 className="text-xl font-bold text-purple-light mb-3">{feature.title}</h3>
+                <p className="text-purple-deep leading-relaxed">{feature.description}</p>
+                <div className="absolute inset-0 rounded-2xl bg-purple-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
           </div>
@@ -269,10 +269,10 @@ export default function LandingPage() {
       {/* Call to Action Section */}
       <section className="py-24 md:py-32 relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-accent/10 to-accent/5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-deep/5 via-purple-deep/10 to-purple-deep/5" />
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent-text/20 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute top-0 left-1/4 w-64 h-64 bg-purple-deep/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-light/20 rounded-full blur-3xl animate-pulse delay-1000" />
         </div>
 
         <div className="container relative">
@@ -288,18 +288,18 @@ export default function LandingPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="inline-block px-6 py-2 rounded-full bg-accent/10 border border-accent-text/20 mb-8"
+              className="inline-block px-6 py-2 rounded-3xl bg-purple-deep/10 border border-purple-deep/20 mb-8"
             >
-              <span className="text-accent-text">🚀 No setup fees • Start for free</span>
+              <span className="text-purple-light">🚀 No setup fees • Start for free</span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-purple-light mb-6">
               Start Accepting{' '}
-              <span className="text-accent-text">Crypto Payments</span>
+              <span className="text-purple-deep">Crypto Payments</span>
               {' '}Today
             </h2>
             
-            <p className="text-lg md:text-xl text-foreground/80 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-purple-deep mb-12 max-w-2xl mx-auto">
               Join thousands of businesses already using Breeeve to accept crypto payments globally.
             </p>
 
@@ -308,7 +308,7 @@ export default function LandingPage() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-accent text-accent-text rounded-xl text-lg font-bold shadow-lg shadow-accent/25 hover:shadow-accent/40 transition-all duration-300"
+                  className="w-full sm:w-auto px-8 py-4 bg-purple-deep text-purple-light rounded-xl text-lg font-bold shadow-lg shadow-purple-deep/25 hover:shadow-purple-deep/40 transition-all duration-300"
                 >
                   Sign Up & Get Started
                 </motion.button>
@@ -317,7 +317,7 @@ export default function LandingPage() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-xl text-lg font-bold hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-4 bg-purple-light/5 backdrop-blur-sm border border-purple-deep/20 text-purple-deep rounded-xl text-lg font-bold hover:bg-purple-light/10 transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <span>Sign In</span>
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -328,7 +328,7 @@ export default function LandingPage() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-purple-deep/10">
               {[
                 { label: 'Active Users', value: '10,000+' },
                 { label: 'Total Volume', value: '$10M+' },
@@ -343,8 +343,8 @@ export default function LandingPage() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-2xl md:text-3xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-sm text-foreground/80">{stat.label}</div>
+                  <div className="text-2xl md:text-3xl font-bold text-purple-light mb-2">{stat.value}</div>
+                  <div className="text-sm text-purple-deep leading-relaxed">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
