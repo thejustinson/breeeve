@@ -222,9 +222,9 @@ export default function LandingPage() {
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: `
-              radial-gradient(circle, rgb(107 114 128 / 0.3) 1px, transparent 1px)
+              radial-gradient(circle, rgb(107 114 128 / 0.3) 1.5px, transparent 1.5px)
             `,
-            backgroundSize: '24px 24px',
+            backgroundSize: '26px 26px',
             backgroundPosition: '0px 0px',
             zIndex: 5
           }}
