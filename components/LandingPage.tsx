@@ -186,10 +186,10 @@ export default function LandingPage() {
   return (
     <main className="bg-white text-gray-900 font-sans">
       {/* Navbar */}
-      <nav className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <nav className="fixed w-full top-0 z-50 bg-white/60 backdrop-blur-lg border-b border-gray-100/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center h-20 py-4">
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-xl font-bold"
@@ -217,19 +217,313 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-20">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-            <div className="absolute inset-0 [background:repeating-linear-gradient(0deg,transparent,transparent_23px,#A390F508_23px,#A390F508_24px),repeating-linear-gradient(90deg,transparent,transparent_23px,#38226108_23px,#38226108_24px)]" />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+        {/* Background Pattern - Grid */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle, rgb(107 114 128 / 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '24px 24px',
+            backgroundPosition: '0px 0px',
+            zIndex: 5
+          }}
+        />
+
+        {/* Background Pattern - Bouncing Shapes */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ zIndex: 10 }}>
+          {/* Large Squares */}
+          <motion.div
+            initial={{ x: -100, y: -100, opacity: 0.3 }}
+            animate={{ 
+              x: [0, 100, 0, -100, 0],
+              y: [0, 100, 200, 100, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-1/4 left-1/4 w-16 sm:w-24 h-16 sm:h-24 bg-purple-light/30 rounded-lg cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 100, y: 100, opacity: 0.3 }}
+            animate={{ 
+              x: [0, -100, 0, 100, 0],
+              y: [0, -100, -200, -100, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-1/4 right-1/4 w-20 sm:w-32 h-20 sm:h-32 bg-purple-deep/30 rounded-lg cursor-pointer pointer-events-auto z-20"
+          />
+          
+          {/* Large Circles */}
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, 150, 0, -150, 0],
+              y: [0, 200, 0, -200, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-1/3 right-1/3 w-24 sm:w-40 h-24 sm:h-40 bg-purple-light/20 rounded-full cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, -200, 0, 200, 0],
+              y: [0, -150, 0, 150, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 35,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-1/3 left-1/3 w-28 sm:w-48 h-28 sm:h-48 bg-purple-deep/20 rounded-full cursor-pointer pointer-events-auto z-20"
+          />
+          
+          {/* Medium Squares */}
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, 100, 0, -100, 0],
+              y: [0, -100, 0, 100, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-1/2 left-1/2 w-12 sm:w-16 h-12 sm:h-16 bg-purple-light/30 rounded-lg cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, -150, 0, 150, 0],
+              y: [0, 150, 0, -150, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 18,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-1/2 right-1/2 w-14 sm:w-20 h-14 sm:h-20 bg-purple-deep/25 rounded-lg cursor-pointer pointer-events-auto z-20"
+          />
+          
+          {/* Small Circles */}
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, 80, 0, -80, 0],
+              y: [0, -80, 0, 80, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 22,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-3/4 left-3/4 w-8 sm:w-12 h-8 sm:h-12 bg-purple-light/25 rounded-full cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, -120, 0, 120, 0],
+              y: [0, 120, 0, -120, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 23,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-3/4 right-3/4 w-10 sm:w-14 h-10 sm:h-14 bg-purple-deep/25 rounded-full cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, 150, 0, -150, 0],
+              y: [0, -100, 0, 100, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 27,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-1/6 left-1/6 w-12 sm:w-16 h-12 sm:h-16 bg-purple-light/20 rounded-lg cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, -100, 0, 100, 0],
+              y: [0, 150, 0, -150, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 29,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-1/6 right-1/6 w-10 sm:w-14 h-10 sm:h-14 bg-purple-deep/20 rounded-full cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, 120, 0, -120, 0],
+              y: [0, -120, 0, 120, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute top-5/6 left-5/6 w-8 sm:w-12 h-8 sm:h-12 bg-purple-light/25 rounded-lg cursor-pointer pointer-events-auto z-20"
+          />
+          <motion.div
+            initial={{ x: 0, y: 0, opacity: 0.3 }}
+            animate={{ 
+              x: [0, -80, 0, 80, 0],
+              y: [0, 100, 0, -100, 0],
+              opacity: [0.3, 0.4, 0.3, 0.4, 0.3]
+            }}
+            whileHover={{ 
+              scale: 1.2,
+              opacity: 0.6,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              transition: { duration: 0.1 }
+            }}
+            transition={{ 
+              duration: 31,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute bottom-5/6 right-5/6 w-12 sm:w-16 h-12 sm:h-16 bg-purple-deep/25 rounded-full cursor-pointer pointer-events-auto z-20"
+          />
+          
+          {/* Gradient overlay - reduced opacity */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white/70 pointer-events-none" style={{ zIndex: 15 }} />
         </div>
 
-        <div className="relative max-w-5xl mx-auto py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+        <div className="relative max-w-5xl mx-auto py-20" style={{ zIndex: 20 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-center space-y-8"
           >
@@ -246,89 +540,90 @@ export default function LandingPage() {
             
             <h1 className="text-5xl sm:text-7xl font-bold text-gray-900 tracking-tight">
               Accept USDC Payments{' '}
+              <br />
               <span className="text-purple">
                 Without The Complexity
-              </span>
-            </h1>
-            
+                </span>
+              </h1>
+
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Accept payments, automate product delivery, and manage earnings with ease. 
               No wallet setup required.
-            </p>
+              </p>
 
-            {!isSubmitted ? (
-              <motion.form
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                onSubmit={handleSubmit}
-                className="max-w-md mx-auto space-y-4"
-              >
-                <div className="relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
+              {!isSubmitted ? (
+                <motion.form
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  onSubmit={handleSubmit}
+                  className="max-w-md mx-auto space-y-4"
+                >
+                  <div className="relative">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
                     className={`w-full px-6 py-4 bg-white border ${
                       error ? 'border-red-500' : 'border-gray-200'
                     } rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-light/50 transition-all`}
-                    required
-                  />
-                  {error && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-red-500 text-sm mt-2"
-                    >
-                      {error}
-                    </motion.p>
-                  )}
-                </div>
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                      required
+                    />
+                    {error && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-500 text-sm mt-2"
+                      >
+                        {error}
+                      </motion.p>
+                    )}
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   className="w-full py-4 px-6 bg-purple-deep hover:bg-purple-light text-white rounded-xl text-lg font-semibold transition-colors duration-200 shadow-lg shadow-purple-light/20 flex items-center justify-center gap-2"
-                  type="submit"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
+                    type="submit"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  ) : (
-                    'Join the Waitlist'
-                  )}
-                </motion.button>
-              </motion.form>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
+                    ) : (
+                      'Join the Waitlist'
+                    )}
+                  </motion.button>
+                </motion.form>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
                 className="bg-white border border-gray-200 rounded-xl p-8 shadow-lg backdrop-blur-sm max-w-md mx-auto"
-              >
-                <div className="text-5xl mb-4">🎉</div>
+                >
+                  <div className="text-5xl mb-4">🎉</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">You&apos;re on the waitlist!</h3>
                 <p className="text-gray-600">
-                  We&apos;ll notify you when Breeeve launches. Stay tuned for updates!
-                </p>
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                    "Just joined the waitlist for @withbreeeve - a fast and simple way to accept crypto payments! 🚀\n\nJoin me and get early access: https://breeeve.vercel.app"
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                    We&apos;ll notify you when Breeeve launches. Stay tuned for updates!
+                  </p>
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                      "Just joined the waitlist for @withbreeeve - a fast and simple way to accept crypto payments! 🚀\n\nJoin me and get early access: https://breeeve.vercel.app"
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-[#1DA1F2] text-white rounded-xl hover:bg-[#1a8cd8] transition-colors"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                  Share on Twitter
-                </a>
-              </motion.div>
-            )}
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    Share on Twitter
+                  </a>
+                </motion.div>
+              )}
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               className="pt-8 text-sm text-gray-500 flex items-center justify-center gap-8"
             >
@@ -392,8 +687,8 @@ export default function LandingPage() {
                   {faqData[activeTab].questions.map((item, index) => (
                     <FAQItem key={index} question={item.q} answer={item.a} />
                   ))}
-                </div>
-              </motion.div>
+              </div>
+            </motion.div>
             </AnimatePresence>
           </div>
         </div>
