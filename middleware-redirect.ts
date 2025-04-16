@@ -1,27 +1,5 @@
-import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
-export default withAuth({
-  callbacks: {
-    authorized: ({ token }) => !!token
-  },
-});
-
-export const config = {
-  matcher: [
-    '/dashboard/:path*',
-    '/api/protected/:path*',
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     */
-    '/((?!_next/static|_next/image|favicon.ico|public/).*)',
-  ]
-};
 
 export function middleware(request: NextRequest) {
   const { hostname } = new URL(request.url);
@@ -42,4 +20,18 @@ export function middleware(request: NextRequest) {
   }
   
   return NextResponse.next();
-} 
+}
+
+// Configure the middleware to run on specific paths
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     */
+    '/((?!_next/static|_next/image|favicon.ico|public/).*)',
+  ],
+}; 
