@@ -219,7 +219,7 @@ export default function LandingPage() {
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-8">
         {/* Background Pattern - Grid */}
         <div 
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none opacity-50"
           style={{
             backgroundImage: `
               radial-gradient(circle, rgb(107 114 128 / 0.3) 1.5px, transparent 1.5px)
