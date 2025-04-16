@@ -224,7 +224,7 @@ export default function LandingPage() {
             backgroundImage: `
               radial-gradient(circle, rgb(107 114 128 / 0.3) 1.5px, transparent 1.5px)
             `,
-            backgroundSize: '26px 26px',
+            backgroundSize: '24px 24px',
             backgroundPosition: '0px 0px',
             zIndex: 5
           }}
